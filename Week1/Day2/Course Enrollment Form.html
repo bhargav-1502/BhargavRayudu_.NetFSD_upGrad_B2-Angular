@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Enrollment Form</title>
+</head>
+<body>
+
+<header>
+    <h2>A to Z Learning Platform</h2>
+    <p>Enroll in your preferred course</p>
+</header>
+
+<main>
+
+<form action="#" method="post">
+
+<label for="name">Full Name:</label><br>
+<input type="text" id="name" name="name"
+       placeholder="Enter your full name"
+       required minlength="3"><br><br>
+
+<label for="email">Email Address:</label><br>
+<input type="email" id="email" name="email"
+       placeholder="example@gmail.com"
+       required><br><br>
+
+<label for="age">Age:</label><br>
+<input type="number" id="age" name="age"
+       min="16" max="60"
+       required><br><br>
+
+<label for="course">Select Course:</label><br>
+<input list="courses" id="course"
+       name="course" required>
+
+<datalist id="courses">
+<option value="Python Programming">
+<option value="Full Stack Development">
+<option value="Data Science">
+<option value="Machine Learning">
+<option value="Cloud Computing">
+</datalist>
+
+<br><br>
+
+<label for="skill">Skill Level (0–100):</label><br>
+<input type="range" id="skill"
+       name="skill"
+       min="0" max="100"
+       value="50"><br><br>
+
+<label>Skill Indicator:</label><br>
+<meter value="50"
+       min="0" max="100"
+       low="30" high="70"
+       optimum="90">
+       50 out of 100
+</meter>
+
+<br><br>
+
+<label>Enrollment Completion:</label><br>
+<progress value="75" max="100">75%</progress>
+
+<br><br>
+
+<input type="submit" value="Enroll">
+
+</form>
+
+</main>
+
+<footer>
+<p>© 2026 A to Z Learning Platform</p>
+</footer>
+
+</body>
+</html>
