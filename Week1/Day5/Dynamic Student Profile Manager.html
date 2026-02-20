@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Student Profile Manager</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #profileCard {
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input {
+            padding: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Profile</h2>
+
+    <div id="profileCard"></div>
+
+    <input type="number" id="newMarks" placeholder="Enter New Marks">
+    <br>
+    <button onclick="updateMarksFromInput()">Update Marks</button>
+
+    <script>
+        var student = {
+            name: "Rahul",
+            rollNo: 1752,
+            marks: 85
+        };
+
+        function updateStudentProfile(studentObj) {
+
+            var profileDiv = document.getElementById("profileCard");
+
+            profileDiv.innerHTML =
+                "<h3>Student Details</h3>" +
+                "<p><strong>Name:</strong> " + studentObj.name + "</p>" +
+                "<p><strong>Roll No:</strong> " + studentObj.rollNo + "</p>" +
+                "<p><strong>Marks:</strong> " + studentObj.marks + "</p>";
+        }
+
+        function updateMarks(newMarks) {
+            student.marks = newMarks;
+            updateStudentProfile(student);
+        }
+
+        function updateMarksFromInput() {
+
+            var marksValue = document.getElementById("newMarks").value;
+
+            if (marksValue !== "") {
+                updateMarks(marksValue);
+            }
+        }    
+
+        updateStudentProfile(student);
+    </script>
+</body>
+</html>
