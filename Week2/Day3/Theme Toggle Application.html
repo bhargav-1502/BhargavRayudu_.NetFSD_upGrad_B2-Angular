@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theme Toggle Application</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .container {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .light {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .dark {
+            background-color: #121212;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Blog Website</h1>
+        <p>This is a sample blog post.</p>
+        <button id="toggleBtn">Toggle Theme</button>
+    </div>
+
+    <script>
+        var body = document.body;
+        var button = document.getElementById("toggleBtn");
+
+        function loadTheme() {
+            var savedTheme = localStorage.getItem("theme");
+
+            if (savedTheme) {
+                body.className = savedTheme;
+            } else {
+                body.className = "light";
+            }
+        }
+
+        function toggleTheme() {
+            if (body.className === "light") {
+                body.className = "dark";
+                localStorage.setItem("theme", "dark");
+            } else {
+                body.className = "light";
+                localStorage.setItem("theme", "light");
+            }
+        }
+        button.addEventListener("click", toggleTheme);
+        loadTheme();
+    </script>
+    
+</body>
+</html>
