@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College Event Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">College Events</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="row g-4">
+
+        <div class="col-12 col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Upcoming Events</h5>
+                    <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                        Add Event
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Event Name</th>
+                                    <th>Date</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody id="eventTableBody">
+                                <tr>
+                                    <td>Tech Fest</td>
+                                    <td>15 April 2026</td>
+                                    <td>Auditorium</td>
+                                </tr>
+                                <tr>
+                                    <td>Sports Meet</td>
+                                    <td>20 April 2026</td>
+                                    <td>Ground</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Dashboard Info</h5>
+                </div>
+                <div class="card-body">
+                    <p>Total Events: <strong id="totalEvents">2</strong></p>
+                    <p>Manage and organize college activities efficiently.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div class="modal fade" id="addEventModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Add New Event</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="eventForm" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label">Event Name</label>
+                        <input type="text" class="form-control" id="eventName" required>
+                        <div class="invalid-feedback">
+                            Please enter event name.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" id="eventDate" required>
+                        <div class="invalid-feedback">
+                            Please select event date.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Location</label>
+                        <input type="text" class="form-control" id="eventLocation" required>
+                        <div class="invalid-feedback">
+                            Please enter location.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        Save Event
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ================= BOOTSTRAP JS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Bootstrap validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })();
+
+    // Add Event 
+    document.getElementById("eventForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var name = document.getElementById("eventName").value;
+        var date = document.getElementById("eventDate").value;
+        var location = document.getElementById("eventLocation").value;
+
+        if (name && date && location) {
+            var table = document.getElementById("eventTableBody");
+            var newRow = table.insertRow();
+            newRow.insertCell(0).innerText = name;
+            newRow.insertCell(1).innerText = date;
+            newRow.insertCell(2).innerText = location;
+
+            var total = table.rows.length;
+            document.getElementById("totalEvents").innerText = total;
+            document.getElementById("eventForm").reset();
+            document.getElementById("eventForm").classList.remove("was-validated");
+
+            var modal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
+            modal.hide();
+        }
+    });
+</script>
+
+</body>
+</html>
+
+    
