@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List - Add to Cart</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 600px;
+            margin: 50px auto;
+        }
+
+        .header {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            margin-top: 0;
+        }
+
+        .addToCart {
+            padding: 8px 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .addToCart[disabled] {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .confirmation {
+            margin-left: 15px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+     Cart Items: <span id="cartCount">0</span>
+</div>
+
+<div id="productList">
+
+    <div class="product">
+        <h3>Laptop</h3>
+        <p>Price: $800</p>
+        <button class="addToCart" data-product="Laptop">Add to Cart</button>
+        <span class="confirmation"></span>
+    </div>
+
+    <div class="product">
+        <h3>Smartphone</h3>
+        <p>Price: $500</p>
+        <button class="addToCart" data-product="Smartphone">Add to Cart</button>
+        <span class="confirmation"></span>
+    </div>
+
+    <div class="product">
+        <h3>Headphones</h3>
+        <p>Price: $100</p>
+        <button class="addToCart" data-product="Headphones">Add to Cart</button>
+        <span class="confirmation"></span>
+    </div>
+
+    <div class="product">
+        <h3>Smartwatch</h3>
+        <p>Price: $200</p>
+        <button class="addToCart" data-product="Smartwatch">Add to Cart</button>
+        <span class="confirmation"></span>
+    </div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+
+    var cartCount = 0;
+
+    // Event Delegation
+    $("#productList").on("click", ".addToCart", function() {
+
+        cartCount++;
+
+        // Update cart counter
+        $("#cartCount").text(cartCount);
+
+        // Disable button
+        $(this).prop("disabled", true)
+               .text("Added")
+               .attr("data-added", "true");
+
+        // Show confirmation message
+        $(this).siblings(".confirmation").text("Added to Cart!");
+
+    });
+});
+
+</script>
+</body>
+</html>
