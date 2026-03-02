@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Feedback Form</title>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .success {
+            color: green;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+    </style>
+
+</head>
+<body>
+
+  <h2>Student Feedback Form</h2>
+  <form id="feedbackForm">
+
+    <label for="name">Name:</label><br>
+    <input type="text" id="name"><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="text" id="email"><br><br>
+
+    <label for="rating">Course Rating:</label><br>
+    <select id="rating">
+      <option value="">--Select--</option>
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Poor">Poor</option>
+    </select><br><br>
+
+    <label for="comments">Comments:</label><br>
+    <textarea id="comments"></textarea><br><br>
+
+    <button type="button" id="submitBtn">Submit</button><br><br>
+
+    <div id="message"></div>
+
+  </form>
+
+  <script>
+    $(document).ready(function() {
+      $("#submitBtn").click(function() {
+ 
+        var name = $("#name").val().trim();
+        var email = $("#email").val().trim();
+
+        if (name === "" || email === "") {
+                $("#message")
+                    .addClass("error")
+                    .text("Please enter Name and Email.");
+            } else {
+                $("#message")
+                    .addClass("success")
+                    .text("Feedback submitted successfully.");
+
+                $("#feedbackForm")[0].reset();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Banking FAQ Section</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .faq-container {
+            width: 600px;
+            margin: 40px auto;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+        }
+
+        .question {
+            background-color: #f5f5f5;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .answer {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="faq-container">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <div class="question">1. How can I open a new bank account?</div>
+        <div class="answer">You can open a new account by visiting your nearest branch with valid ID proof and address proof, or apply online through our website.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="question">2. What documents are required for KYC verification?</div>
+        <div class="answer">Government-issued ID proof, address proof, and passport-size photographs are required for KYC verification.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="question">3. How can I reset my online banking password?</div>
+        <div class="answer">Click on the “Forgot Password” option on the login page and follow the instructions to reset your password securely.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="question">4. What should I do if my debit card is lost?</div>
+        <div class="answer">Immediately block your card through mobile banking, internet banking, or contact customer support to prevent unauthorized transactions.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="question">5. Are there charges for online fund transfers?</div>
+        <div class="answer">Most online transfers such as NEFT and IMPS are free, but certain services may have minimal charges depending on the transaction type.</div>
+    </div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+
+    $(".question").click(function() {
+
+        $(".question").not(this).removeClass("active");
+
+        $(this).toggleClass("active");
+
+        $(".answer").not($(this).next()).slideUp();
+
+        $(this).next(".answer").slideToggle();
+    });
+});
+</script>
+
+</body>
+</html>
