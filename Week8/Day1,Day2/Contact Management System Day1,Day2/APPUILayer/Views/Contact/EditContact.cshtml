@@ -1,0 +1,64 @@
+﻿@model DataAccessLayer.Models.ContactInfo
+
+<h2>Edit Contact</h2>
+
+<form asp-action="EditContact" asp-route-id="@Model.ContactId" method="post">
+
+    <input type="hidden" name="ContactId" value="@Model.ContactId" />
+
+    <div>
+        <label>First Name</label><br />
+        <input type="text" name="FirstName" value="@Model.FirstName" />
+    </div>
+
+    <div>
+        <label>Last Name</label><br />
+        <input type="text" name="LastName" value="@Model.LastName" />
+    </div>
+
+    <div>
+        <label>Email</label><br />
+        <input type="text" name="EmailId" value="@Model.EmailId" />
+    </div>
+
+    <div>
+        <label>Mobile</label><br />
+        <input type="number" name="MobileNo" value="@Model.MobileNo" />
+    </div>
+
+    <div>
+        <label>Designation</label><br />
+        <input type="text" name="Designation" value="@Model.Designation" />
+    </div>
+
+    <div>
+        <label>Company</label><br />
+        <select name="CompanyId">
+            @foreach (var c in ViewBag.Companies)
+            {
+                <option value="@c.CompanyId"
+                    @(c.CompanyId == Model.CompanyId ? "selected" : "")>
+                    @c.CompanyName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Department</label><br />
+        <select name="DepartmentId">
+            @foreach (var d in ViewBag.Departments)
+            {
+                <option value="@d.DepartmentId"
+                    @(d.DepartmentId == Model.DepartmentId ? "selected" : "")>
+                    @d.DepartmentName
+                </option>
+            }
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit">Update</button>
+
+</form>
