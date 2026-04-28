@@ -1,0 +1,68 @@
+<div class="container">
+
+  <h1>Contact Management Form</h1>
+
+  <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
+
+    <label>Name:</label>
+    <input type="text" formControlName="name">
+
+    @if (contactForm.controls['name'].touched && contactForm.controls['name'].invalid) {
+      <small>Name is required</small>
+    }
+
+    <label>Email:</label>
+    <input type="email" formControlName="email">
+
+    @if (contactForm.controls['email'].touched && contactForm.controls['email'].errors?.['required']) {
+      <small>Email is required</small>
+    }
+
+    @if (contactForm.controls['email'].touched && contactForm.controls['email'].errors?.['email']) {
+      <small>Enter a valid email</small>
+    }
+
+    <label>Phone:</label>
+    <input type="text" formControlName="phone">
+
+    @if (contactForm.controls['phone'].touched && contactForm.controls['phone'].errors?.['required']) {
+      <small>Phone is required</small>
+    }
+
+    @if (contactForm.controls['phone'].touched && contactForm.controls['phone'].errors?.['minlength']) {
+      <small>Phone must be minimum 10 digits</small>
+    }
+
+    <label>
+      <input type="checkbox" formControlName="isActive">
+      Active
+    </label>
+
+    <button type="submit">Add Contact</button>
+
+  </form>
+
+  <h2>Contact List</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Status</th>
+    </tr>
+
+    @for (contact of contacts; track contact.contactId) {
+      <tr>
+        <td>{{ contact.contactId }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.phone }}</td>
+        <td>{{ contact.isActive ? 'Active' : 'Inactive' }}</td>
+      </tr>
+    }
+
+  </table>
+
+</div>
